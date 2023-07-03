@@ -1,6 +1,46 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogin } from "../store/user";
+import { useNavigate } from "react-router-dom";
 
 export default function Signin() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // Redux State
+  const user = useSelector((state) => state.user);
+
+  // useState
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+  // Login Function
+  const login = () => {
+    fetch("http://localhost:3001/api/v1/user/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status === 200) {
+          dispatch(userLogin({ ...data, email: email }));
+          navigate("/dashboard");
+        }
+      });
+  };
+
+  useEffect(() => {
+    if (user.connected === true) {
+      navigate("/dashboard");
+    }
+  }, []);
+
   return (
     <div className="bg-[#12002b] h-[calc(100vh-153px)] flex">
       <div className="px-10 py-6 ml-auto mr-auto mt-12 bg-white flex flex-col gap-5 max-h-fit h-fit justify-center items-center">
@@ -13,6 +53,7 @@ export default function Signin() {
               className="p-2 block border border-black bg-white"
               type="text"
               placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div>
@@ -21,17 +62,19 @@ export default function Signin() {
               className="p-2 block border border-black bg-white"
               type="password"
               placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div className="flex flex-row gap-4">
             <input type="checkbox" />{" "}
             <span className="text-[#2c3e50]">Remember me</span>
           </div>
-          <Link to="/dashboard">
-            <div className="w-full p-2 text-center bg-[#00bc77] text-white font-bold cursor-pointer">
-              <u>Sign In</u>
-            </div>
-          </Link>
+          <div
+            className="w-full p-2 text-center bg-[#00bc77] text-white font-bold cursor-pointer"
+            onClick={login}
+          >
+            <u>Sign In</u>
+          </div>
         </form>
       </div>
     </div>

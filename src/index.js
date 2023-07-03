@@ -2,6 +2,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import store from "./store";
+import { Provider } from "react-redux";
 
 // Components
 import Header from "./components/header";
@@ -12,20 +14,30 @@ import Home from "./pages/home";
 import Signin from "./pages/signin";
 import Dashboard from "./pages/dashboard";
 
+// Hooks
+import Protected from "./pages/protected";
+
 // Style
 import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <BrowserRouter>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<Signin />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/dashboard"
+          element={
+            <Protected>
+              <Dashboard />
+            </Protected>
+          }
+        />
       </Routes>
       <Footer />
     </BrowserRouter>
-  </React.StrictMode>
+  </Provider>
 );
