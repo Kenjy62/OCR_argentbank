@@ -27,9 +27,9 @@ root.render(
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/signin" element={<Signin />} />
+        <Route path="/login" element={<Signin />} />
         <Route
-          path="/dashboard"
+          path="/profile"
           element={
             <Protected>
               <Dashboard />

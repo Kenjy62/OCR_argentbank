@@ -31,7 +31,7 @@ export default function Header() {
       <div className="flex flex-row gap-4 items-center">
         {currentPath === "/" && !user.connected ? (
           <Link
-            to="/signin"
+            to="/login"
             className="flex flex-row gap-3 justify-center items-center"
           >
             <i className="fa fa-user-circle"></i>
@@ -39,22 +39,24 @@ export default function Header() {
           </Link>
         ) : currentPath === "/" && user.connected ? (
           <Link
-            to="/dashboard"
+            to="/profile"
             className="flex flex-row gap-3 justify-center items-center"
           >
             <i className="fa fa-user-circle"></i>
             <span className="text-base font-semibold">{user.email}</span>
           </Link>
         ) : currentPath != "/" && user.connected ? (
-          <Link
-            onClick={logout}
-            className="flex flex-row gap-3 justify-center items-center"
-          >
+          <>
             <i className="fa fa-user-circle"></i>
             <span className="text-base font-semibold">{`${user.firstName}`}</span>
-            <i className="fa fa-sign-out"></i>
-            <span className="text-base font-semibold">Sign out</span>
-          </Link>
+            <Link
+              onClick={logout}
+              className="flex flex-row gap-3 justify-center items-center"
+            >
+              <i className="fa fa-sign-out"></i>
+              <span className="text-base font-semibold">Sign out</span>
+            </Link>
+          </>
         ) : null}
       </div>
     </header>

@@ -30,14 +30,14 @@ export default function Signin() {
       .then((data) => {
         if (data.status === 200) {
           dispatch(userLogin({ ...data, email: email }));
-          navigate("/dashboard");
+          navigate("/profile");
         }
       });
   };
 
   useEffect(() => {
     if (user.connected === true) {
-      navigate("/dashboard");
+      navigate("/profile");
     }
   }, []);
 

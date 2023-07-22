@@ -1,0 +1,193 @@
+swagger: '2.0'
+info:
+  title: Bank Argent API Documentation - Transactions
+  description: |-
+    API for transactions that must allow users to:
+    - view all their transactions for the current month
+    - view the details of a transaction in another view
+    - add, modify or delete information on a transaction
+
+    Some useful links:
+    - [Bank Argent repository](https://github.com/OpenClassrooms-Student-Center/Project-10-Bank-API)
+    - [User API definition for project](https://github.com/OpenClassrooms-Student-Center/Project-10-Bank-API/swagger.yaml)
+  version: '1.0.0'
+  termsOfService: 'http://swagger.io/terms/'
+host: localhost:3001
+basePath: /api/v1
+schemes:
+  - http
+paths:
+  /transactions/current:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction
+      summary: Fetch all transactions this Month
+      description: Return all transactions for the current month into Array Of Objects
+      parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Sucessfully month transaction fetch
+          schema:
+            type: array
+            items:
+                type: object
+                properties:
+                  transactionID:
+                   type: number
+                   example: "195476"
+                  Date: 
+                    type: string
+                    format: date
+                  Description: 
+                    type: string
+                    example: Golden Sun Bakery
+                  Type:
+                    type: string
+                    example: Electronic
+                  Category: 
+                    type: string
+                    example: Food
+                  Amount: 
+                    type: number
+                    example: 50
+                  beforeBalance: 
+                    type: number
+                    example: 20000
+                  afterBalance: 
+                    type: number
+                    example: 19950
+        '400':
+          description: Invalid JWT
+        '500':
+          description: Internal Server Error
+  /transactions/{transactionID}:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction
+      summary: Fetch details of specific transaction
+      description: Return a details of a specific transaction with transactionID parameter
+      parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+          type: string
+        - in: path
+          name: transactionID
+          required: true
+          type: number
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Sucessfully transaction fetched
+          schema:
+            type: array
+            items:
+                type: object
+                properties:
+                  transactionID:
+                   type: number
+                   example: "195476"
+                  Date: 
+                    type: string
+                    format: date
+                  Description: 
+                    type: string
+                    example: Golden Sun Bakery
+                  Type:
+                    type: string
+                    example: Electronic
+                  Category: 
+                    type: string
+                    example: Food
+                  Amount: 
+                    type: number
+                    example: 50
+                  beforeBalance: 
+                    type: number
+                    example: 20000
+                  afterBalance: 
+                    type: number
+                    example: 19950
+        '400':
+          description: Invalid JWT or Transaction ID
+        '500':
+          description: Internal Server Error        
+    put: 
+      security:
+        - Bearer: []
+      tags:
+        - Transaction
+      summary: Fetch details of specific transaction
+      description: Return a details of a specific transaction with transactionID parameter
+      parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+          type: string
+        - in: path
+          name: transactionID
+          required: true
+          type: number
+        - in: body
+          name: body
+          schema: 
+            type: object
+            properties:
+              transactionID:
+                type: number
+                example: 195476
+              category: 
+                type: string
+                example: 'Cinema'
+              transactionType: 
+                type: string
+                example: 'Electronic'
+              notes: 
+                type: string
+                example: blablabla
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Sucessfully transaction Updated
+          schema:
+            type: array
+            items:
+                type: object
+                properties:
+                  transactionID:
+                   type: number
+                   example: "195476"
+                  Type:
+                    type: string
+                    example: Electronic
+                  Category: 
+                    type: string
+                    example: Cinema
+                  notes: 
+                    type: string
+                    example: blablabla
+        '400':
+          description: Invalid JWT or Transaction ID
+        '500':
+          description: Internal Server Error        
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+      
