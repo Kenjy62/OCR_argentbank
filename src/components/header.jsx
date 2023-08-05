@@ -1,9 +1,13 @@
+// Required
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { userLogout } from "../store/user";
 import { useNavigate } from "react-router-dom";
 
+// Store Redux
+import { userLogout } from "../store/user";
+
+// Assets
 import Logo from "../assets/logo.png";
 
 export default function Header() {

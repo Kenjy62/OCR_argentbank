@@ -1,9 +1,12 @@
+// Components
 import Card from "./card";
 
+// Assets
 import IconChat from "../assets/icon-chat.png";
 import IconSecurity from "../assets/icon-security.png";
 import IconMoney from "../assets/icon-money.png";
 
+// Text
 const text = {
   chat: "Need to talk to a representative? You can get in touch through our 24/7 chat or through a phone call in less than 5 minutes.",
   security:
@@ -11,6 +14,7 @@ const text = {
   money: "The more you save with us, the higher your interest rate will be!",
 };
 
+// Title
 const title = {
   chat: "You are our #1 priority",
   security: "Security you can trust",
