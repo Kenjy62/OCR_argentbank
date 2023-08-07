@@ -4,7 +4,7 @@
 
 # OhMyFood
 
-Project 6 for **OpenClassrooms Developer React Formation**
+Project 13 for **OpenClassrooms Developer React Formation**
 
 <br>
 
