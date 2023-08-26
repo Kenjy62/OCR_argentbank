@@ -28,7 +28,8 @@ Transform a HTML website on React and implement a basic authentication système,
 >
 > Swagger for a endpoints document
 >
-> # How to install
+
+# How to install
 >
 > In terminal :
 >
