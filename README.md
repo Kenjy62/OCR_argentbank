@@ -27,3 +27,32 @@ Transform a HTML website on React and implement a basic authentication système,
 > Tailwindcss
 >
 > Swagger for a endpoints document
+>
+> # How to install
+>
+> In terminal :
+>
+> ```bash
+> git clone https://github.com/Kenjy62/OCR_argentbank.git
+> ```
+>
+> ```bash
+> cd backend
+> ```
+>
+> ```bash
+> npm install
+> ```
+> ```bash
+> npm run dev:server
+> ```
+>
+> Back to /
+>
+> ```bash
+> npm install
+> ```
+>
+> ```bash
+> npm start
+> ```
